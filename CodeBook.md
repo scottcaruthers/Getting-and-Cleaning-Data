@@ -85,7 +85,7 @@ name.new <- gsub("-std-", "_StandardDeviation_", name.new)<br />
 name.new <- gsub("-", "_", name.new)<br />
 names(data.sub) <- name.new<br />
 
-*Aggregate combined data by activity and subject<br />
+*Aggregate combined data by activity and subject*<br />
 *Create new tidy data table with mean observations across variables*<br />
 tidy_data <- aggregate(data.sub[,3:81], by = list(activity = data.sub$activity, subject = data.sub$subject),FUN = mean)<br />
 write.table(x = tidy_data, file = "tidy_data.txt", row.names = FALSE)<br />
