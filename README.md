@@ -15,18 +15,18 @@ Data for the exercise can be found here: https://d396qusza40orc.cloudfront.net/g
 
 *Process*\
 Create an R script, run_analysis.R, that performs the following:\
-  Merges the training and the test sets to create one data set.\
-  Extracts only the measurements on the mean and standard deviation for each measurement.\
-  Uses descriptive activity names to name the activities in the data set\
-  Appropriately labels the data set with descriptive variable names.\
-  From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and    each subject.
+1. Merges the training and the test sets to create one data set.\
+2. Extracts only the measurements on the mean and standard deviation for each measurement.\
+3. Uses descriptive activity names to name the activities in the data set\
+4. Appropriately labels the data set with descriptive variable names.\
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and    each subject.
 
 *run_analysis.R script review:*\
-  Load the data.table library\
-  Download the data from the above URL\
-  Read the X, Y, and subject data from the downloaded data\
-  Merge the training and test data with data.frame\
-  Extract the mean and standard deviation data with grep\
-  Rename activity data with gsub\
-  Label data set with descriptive variable names with gsub\
-  Create tidy data set with average variable data/activity/subject as data_tidy.txt
+1. Load the data.table library\
+2. Download the data from the above URL\
+3. Read the X, Y, and subject data from the downloaded data\
+4. Merge the training and test data with data.frame\
+5. Extract the mean and standard deviation data with grep\
+6. Rename activity data with gsub\
+7. Label data set with descriptive variable names with gsub\
+8. Create tidy data set with average variable data/activity/subject as data_tidy.txt
