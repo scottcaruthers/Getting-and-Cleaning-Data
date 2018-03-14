@@ -24,68 +24,68 @@ The following files are available for the train and test data. Their description
 - 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second.<br />
 
 **_The above data is then downloaded, transformed, and analyzed by the run_analysis.R script, below:_**<br />
-*Overview of run_analysis.R script*
+*Overview of run_analysis.R script*<br />
 This script pulls training and test data from accelerometers from Samsung Galaxy S smartphones
 
-*Enable the data.table library*
+*Enable the data.table library*<br />
 library(data.table)
 
-*Navigate to, then download, source data*
+*Navigate to, then download, source data*<br />
 fileurl = 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
-if (!file.exists('./UCI HAR Dataset.zip')){
-  download.file(fileurl,'./UCI HAR Dataset.zip', mode = 'wb')
-  unzip("UCI HAR Dataset.zip", exdir = getwd())
-}
+if (!file.exists('./UCI HAR Dataset.zip')){<br />
+  download.file(fileurl,'./UCI HAR Dataset.zip', mode = 'wb')<br />
+  unzip("UCI HAR Dataset.zip", exdir = getwd())<br />
+}<br />
 
-*Read UCI HAR data*
+*Read UCI HAR data*<br />
 features <- read.csv('./UCI HAR Dataset/features.txt', header = FALSE, sep = ' ')
 features <- as.character(features[,2])
 
-*Read x, activity, and subject information from train data and define each as separate variables*
-data.train.x <- read.table('./UCI HAR Dataset/train/X_train.txt')
-data.train.activity <- read.csv('./UCI HAR Dataset/train/y_train.txt', header = FALSE, sep = ' ')
-data.train.subject <- read.csv('./UCI HAR Dataset/train/subject_train.txt',header = FALSE, sep = ' ')
+*Read x, activity, and subject information from train data and define each as separate variables*<br />
+data.train.x <- read.table('./UCI HAR Dataset/train/X_train.txt')<br />
+data.train.activity <- read.csv('./UCI HAR Dataset/train/y_train.txt', header = FALSE, sep = ' ')<br />
+data.train.subject <- read.csv('./UCI HAR Dataset/train/subject_train.txt',header = FALSE, sep = ' ')<br />
 
-*Create data frame from train data with subject, activity, and x variables combined*
-data.train <-  data.frame(data.train.subject, data.train.activity, data.train.x)
-names(data.train) <- c(c('subject', 'activity'), features)
+*Create data frame from train data with subject, activity, and x variables combined*<br />
+data.train <-  data.frame(data.train.subject, data.train.activity, data.train.x)<br />
+names(data.train) <- c(c('subject', 'activity'), features)<br />
 
-*Read x, activity, and subject information from test data and define each as separate variables*
-data.test.x <- read.table('./UCI HAR Dataset/test/X_test.txt')
-data.test.activity <- read.csv('./UCI HAR Dataset/test/y_test.txt', header = FALSE, sep = ' ')
-data.test.subject <- read.csv('./UCI HAR Dataset/test/subject_test.txt', header = FALSE, sep = ' ')
+*Read x, activity, and subject information from test data and define each as separate variables*<br />
+data.test.x <- read.table('./UCI HAR Dataset/test/X_test.txt')<br />
+data.test.activity <- read.csv('./UCI HAR Dataset/test/y_test.txt', header = FALSE, sep = ' ')<br />
+data.test.subject <- read.csv('./UCI HAR Dataset/test/subject_test.txt', header = FALSE, sep = ' ')<br />
 
-*Create data frame from test data with subject, activity, and x variables combined*
-data.test <-  data.frame(data.test.subject, data.test.activity, data.test.x)
-names(data.test) <- c(c('subject', 'activity'), features)
+*Create data frame from test data with subject, activity, and x variables combined*<br />
+data.test <-  data.frame(data.test.subject, data.test.activity, data.test.x)<br />
+names(data.test) <- c(c('subject', 'activity'), features)<br />
 
-*Combine train and test data into data.all with rbind function*
-data.all <- rbind(data.train, data.test)
+*Combine train and test data into data.all with rbind function*<br />
+data.all <- rbind(data.train, data.test)<br />
 
-*Select mean and standard deviation from data.all with grep function*
-*Create data.sub from data.all with concatenation*
-mean_std.select <- grep('mean|std', features)
-data.sub <- data.all[,c(1,2,mean_std.select + 2)]
+*Select mean and standard deviation from data.all with grep function*<br />
+*Create data.sub from data.all with concatenation*<br />
+mean_std.select <- grep('mean|std', features)<br />
+data.sub <- data.all[,c(1,2,mean_std.select + 2)]<br />
 
-*Create activity labels through read function*
-activity.labels <- read.table('./UCI HAR Dataset/activity_labels.txt', header = FALSE)
-activity.labels <- as.character(activity.labels[,2])
-data.sub$activity <- activity.labels[data.sub$activity]
+*Create activity labels through read function*<br />
+activity.labels <- read.table('./UCI HAR Dataset/activity_labels.txt', header = FALSE)<br />
+activity.labels <- as.character(activity.labels[,2])<br />
+data.sub$activity <- activity.labels[data.sub$activity]<br />
 
-*Rename activity labels with gsub function*
-name.new <- names(data.sub)
-name.new <- gsub("[(][)]", "", name.new)
-name.new <- gsub("^t", "TimeDomain_", name.new)
-name.new <- gsub("^f", "FrequencyDomain_", name.new)
-name.new <- gsub("Acc", "Accelerometer", name.new)
-name.new <- gsub("Gyro", "Gyroscope", name.new)
-name.new <- gsub("Mag", "Magnitude", name.new)
-name.new <- gsub("-mean-", "_Mean_", name.new)
-name.new <- gsub("-std-", "_StandardDeviation_", name.new)
-name.new <- gsub("-", "_", name.new)
-names(data.sub) <- name.new
+*Rename activity labels with gsub function*<br />
+name.new <- names(data.sub)<br />
+name.new <- gsub("[(][)]", "", name.new)<br />
+name.new <- gsub("^t", "TimeDomain_", name.new)<br />
+name.new <- gsub("^f", "FrequencyDomain_", name.new)<br />
+name.new <- gsub("Acc", "Accelerometer", name.new)<br />
+name.new <- gsub("Gyro", "Gyroscope", name.new)<br />
+name.new <- gsub("Mag", "Magnitude", name.new)<br />
+name.new <- gsub("-mean-", "_Mean_", name.new)<br />
+name.new <- gsub("-std-", "_StandardDeviation_", name.new)<br />
+name.new <- gsub("-", "_", name.new)<br />
+names(data.sub) <- name.new<br />
 
-*Aggregate combined data by activity and subject
-*Create new tidy data table with mean observations across variables*
-data.tidy <- aggregate(data.sub[,3:81], by = list(activity = data.sub$activity, subject = data.sub$subject),FUN = mean)
-write.table(x = data.tidy, file = "data_tidy.txt", row.names = FALSE)
+*Aggregate combined data by activity and subject<br />
+*Create new tidy data table with mean observations across variables*<br />
+data.tidy <- aggregate(data.sub[,3:81], by = list(activity = data.sub$activity, subject = data.sub$subject),FUN = mean)<br />
+write.table(x = data.tidy, file = "data_tidy.txt", row.names = FALSE)<br />
