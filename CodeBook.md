@@ -75,8 +75,8 @@ data.sub$activity <- activity.labels[data.sub$activity]<br />
 *Rename activity labels with gsub function*<br />
 name.new <- names(data.sub)<br />
 name.new <- gsub("[(][)]", "", name.new)<br />
-name.new <- gsub("^t", "TimeDomain_", name.new)<br />
-name.new <- gsub("^f", "FrequencyDomain_", name.new)<br />
+name.new <- gsub("^t", "Time_", name.new)<br />
+name.new <- gsub("^f", "Frequency_", name.new)<br />
 name.new <- gsub("Acc", "Accelerometer", name.new)<br />
 name.new <- gsub("Gyro", "Gyroscope", name.new)<br />
 name.new <- gsub("Mag", "Magnitude", name.new)<br />
@@ -87,5 +87,5 @@ names(data.sub) <- name.new<br />
 
 *Aggregate combined data by activity and subject<br />
 *Create new tidy data table with mean observations across variables*<br />
-data.tidy <- aggregate(data.sub[,3:81], by = list(activity = data.sub$activity, subject = data.sub$subject),FUN = mean)<br />
-write.table(x = data.tidy, file = "data_tidy.txt", row.names = FALSE)<br />
+tidy_data <- aggregate(data.sub[,3:81], by = list(activity = data.sub$activity, subject = data.sub$subject),FUN = mean)<br />
+write.table(x = tidy_data, file = "tidy_data.txt", row.names = FALSE)<br />
