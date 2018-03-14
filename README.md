@@ -21,7 +21,7 @@ Create an R script, run_analysis.R, that performs the following:
 4. Appropriately labels the data set with descriptive variable names
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and    each subject
 
-*run_analysis.R script review:*\
+*run_analysis.R script review:*
 1. Load the data.table library
 2. Download the data from the above URL
 3. Read the X, Y, and subject data from the downloaded data
