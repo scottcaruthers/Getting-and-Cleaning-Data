@@ -1,7 +1,7 @@
 # Getting-and-Cleaning-Data
 Repository for collecting &amp; analyzing wearable computing data
 
-#*Purpose*\
+_*Purpose*\_
 Demonstrate ability to collect, work with, and clean a data set.
 
 #*Goal*\
