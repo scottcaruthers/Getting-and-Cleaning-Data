@@ -29,4 +29,4 @@ Create an R script, run_analysis.R, that performs the following:
 5. Extract the mean and standard deviation data with grep
 6. Rename activity data with gsub
 7. Label data set with descriptive variable names with gsub
-8. Create tidy data set with average variable data/activity/subject as data_tidy.txt
+8. Create tidy data set with average variable data/activity/subject as tidy_data.txt
