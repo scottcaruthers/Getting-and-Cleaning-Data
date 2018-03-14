@@ -1,5 +1,5 @@
 
-***Data Set URL:***<br />
+**_Data Set URL:_**<br />
 https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#
 
 ***Data Set Information (from Data Set URL):***
