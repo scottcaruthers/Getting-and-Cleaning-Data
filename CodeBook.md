@@ -31,7 +31,7 @@ This script pulls training and test data from accelerometers from Samsung Galaxy
 library(data.table)
 
 *Navigate to, then download, source data*<br />
-fileurl = 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
+fileurl = 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'<br />
 if (!file.exists('./UCI HAR Dataset.zip')){<br />
   download.file(fileurl,'./UCI HAR Dataset.zip', mode = 'wb')<br />
   unzip("UCI HAR Dataset.zip", exdir = getwd())<br />
